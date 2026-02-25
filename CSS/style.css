@@ -1,3 +1,29 @@
 h1 {
-    color: rgb(44, 0, 137);
+    color: #2c0089;
 }
+
+h2 {
+  color: #2c0089;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f4f6f8;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background: white;
+  text-align: center;
+}
+
+button {
+  background-color: #4a90e2;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+
