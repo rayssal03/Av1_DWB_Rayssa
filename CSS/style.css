@@ -1,29 +1,90 @@
-h1 {
-    color: #2c0089;
-}
-
-h2 {
-  color: #2c0089;
-}
-
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: #f4f6f8;
+  display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 100vh;
 }
 
+/* Container principal */
 .container {
   background: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 400px;
   text-align: center;
 }
 
+/* Títulos */
+h1 {
+  margin-bottom: 20px;
+  color: #4a148c;
+}
+
+h2 {
+  margin: 20px 0 10px;
+  color: #8e44ad;
+}
+
+/* Formulário */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  font-size: 14px;
+  color: #8e44ad;
+}
+
+input {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+input:focus {
+  outline: none;
+  border-color: #b39ddb;
+}
+
+/* Botão */
 button {
-  background-color: #4a90e2;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #b39ddb;
   color: white;
   font-size: 14px;
   cursor: pointer;
   transition: 0.2s;
 }
 
+button:hover {
+  background-color: #b39ddb;
+}
 
+/* Lista */
+ul {
+  list-style: none;
+  margin-top: 10px;
+}
+
+li {
+  background: #f1f3f5;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+/* Mensagem de erro */
+#mensagemErro {
+  font-size: 13px;
+  min-height: 18px;
+}
