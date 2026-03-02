@@ -1,6 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f4f6f8;
+  background-color: rgb(248, 219, 255);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,12 +9,12 @@ body {
 
 /* Container principal */
 .container {
-  background: white;
+  background: rgb(255, 255, 255);
   padding: 30px 40px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   width: 100%;
-  max-width: 400px;
+  max-width: 300px;
   text-align: center;
 }
 
