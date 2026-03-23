@@ -6,9 +6,11 @@ document.addEventListener("DOMContentLoaded", function () {
   const lista = document.querySelector("#listaTarefas");
 
   const tarefas = [];
+  let editandoIndex = null;
 
   function validarTarefa(texto) {
     const t = texto.trim();
+
     if (t === "") {
       return "A tarefa não pode estar vazia.";
     }
@@ -16,47 +18,80 @@ document.addEventListener("DOMContentLoaded", function () {
     if (t.length <= 3) {
       return "Erro: a tarefa deve ter mais de 3 caracteres.";
     }
+
     return "";
   }
 
   function renderTarefas() {
     lista.innerHTML = "";
 
-    for (const tarefa of tarefas) {
+    tarefas.forEach((tarefa, index) => {
       const li = document.createElement("li");
-      li.textContent = tarefa;
+
+      const span = document.createElement("span");
+      span.textContent = tarefa;
+
+      // EDITAR
+      span.addEventListener("click", () => {
+        input.value = tarefa;
+        input.focus();
+        editandoIndex = index;
+
+        mensagemErro.textContent =
+          "Editando item " + (index + 1) + " (envie para salvar)";
+      });
+
+      // EXCLUIR
+      const btnExcluir = document.createElement("button");
+      btnExcluir.type = "button";
+      btnExcluir.textContent = "Excluir";
+
+      btnExcluir.addEventListener("click", () => {
+        tarefas.splice(index, 1);
+        renderTarefas();
+      });
+
+      li.append(span, " ", btnExcluir);
       lista.append(li);
-    }
+    });
   }
 
   form.addEventListener("submit", function (event) {
     event.preventDefault();
+
     const textoDigitado = input.value;
     const erroValidacao = validarTarefa(textoDigitado);
 
     if (erroValidacao !== "") {
       mensagemErro.textContent = erroValidacao;
-      mensagemErro.style.color = 'red';
+      mensagemErro.style.color = "red";
       return;
     }
 
+    const textoFinal = textoDigitado.trim();
+
     mensagemErro.textContent = "";
-    mensagemErro.style.color = '';
-    tarefas.push(textoDigitado.trim());
+    mensagemErro.style.color = "";
+
+    if (editandoIndex !== null) {
+      tarefas[editandoIndex] = textoFinal;
+      editandoIndex = null;
+    } else {
+      tarefas.push(textoFinal);
+    }
+
     renderTarefas();
 
     input.value = "";
     input.focus();
   });
 
-  // Limpa a mensagem de erro enquanto o usuário corrige a entrada
-  input.addEventListener('input', function () {
-    const t = input.value.trim();
-    if (t.length > 3) {
-      mensagemErro.textContent = '';
-      mensagemErro.style.color = '';
+  // Limpa erro enquanto digita
+  input.addEventListener("input", function () {
+    if (input.value.trim().length > 3) {
+      mensagemErro.textContent = "";
+      mensagemErro.style.color = "";
     }
   });
-
 
 });
